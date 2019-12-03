@@ -1,0 +1,13 @@
+body{
+   background: linear-gradient(to bottom right, Wheat , white);
+   width: 1250px;
+  height: 1000px;
+}
+
+.haut{
+  border-width:5px;
+   border-style:inset;
+   border-color:black;
+   color: black;
+   text-align:center;
+}
