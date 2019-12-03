@@ -31,7 +31,7 @@ else{
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
   <link rel="stylesheet" href="style.css"/>

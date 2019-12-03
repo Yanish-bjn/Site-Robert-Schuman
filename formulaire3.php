@@ -10,7 +10,7 @@
    $a = $req->execute(array('nom'=>$nom,'prenom'=>$prenom,'age'=>$age, 'metier'=>$metier, 'pays'=>$pays));
     $donne=$req->fetch();
     var_dump($a);
-    echo 'la personne a bien etait ajouter !';
+    echo 'la personne a bien etait ajouter !'; 
 ?>
 
 <!DOCTYPE html>
