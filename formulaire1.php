@@ -2,7 +2,7 @@
 session_start ();
 
 try {
-  $bdd = new PDO('mysql:host=localhost;client=test;charset=utf8', 'root','');
+  $bdd = new PDO('mysql:host=localhost;dbname=lycee;charset=utf8', 'root','');
 
 }
 catch (Exception $e)
@@ -15,12 +15,12 @@ catch (Exception $e)
 
     	$_session['login']= $_POST['login'];
 
-      header('location: formulaireprexo4');
+      header('location: page acceuil.php');
  }
 else {
   echo '<body onload="alert(\'Nope\')">';
 
-  echo '<meta http-equive="refresh" content="0;URL=formulaireprexo1.php">';
+  echo '<meta http-equive="refresh" content="0;URL=formulaire1.php">';
 }
 }
 
@@ -31,10 +31,10 @@ else{
 }
 ?>
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="/site lycee/CSS/style.css"/>
 	<meta charset="UTF-8"/>
 	<title>Connexion</title>
 </head>
@@ -45,7 +45,7 @@ else{
 <p>Choisir votre login :<input type="texte" name="Login"/></p>
 <p>Choisir votre mot de passe :<input type="password" name="mdp"/></p>
     <input type="submit" value="valider"/>
-    <a href="formulaireprexo2.php">S'inscrire</a>
+    <a href="formulaire2.php">S'inscrire</a>
 </form>
 </div>
 </body>
