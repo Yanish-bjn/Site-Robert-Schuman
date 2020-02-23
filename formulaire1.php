@@ -1,52 +1,35 @@
 <?php
-session_start ();
+session_start();
+$login = $_POST['login'];
+$mdp = md5($_POST['mdp']);
 
 try {
-  $bdd = new PDO('mysql:host=localhost;dbname=lycee;charset=utf8', 'root','');
+  $bdd =  new PDO('mysql:host=localhost;dbname=lycee;charset=utf8','root','');
+} catch (Exception $e) {
+   die('Erreur:'.$e->getMessage());
+}
+
+$red = $bdd->prepare('SELECT * FROM inscription WHERE login=:login AND mdp=:mdp ');
+$red->execute(array(
+   'login'=> $login,
+   'mdp'=> $mdp
+ ));
+$c = $red->fetch();
+// prepare la requette, recupere la requette, affiche la requette //
+if ($c == true) {
+  $_SESSION['login'] = $login;
+  $_SESSION['mdp'] = $mdp;
+  $_SESSION['role'] = $c['role'];
+  $_SESSION['nom'] = $c['nom'];
+  $_SESSION['prenom']=$c['prenom'];
+  $_SESSION['email']=$c['email'];
+  header('Location: administration.php');
+
 
 }
-catch (Exception $e)
-{
-    die('Erreur:'. $e->getMessage());
-
-
-    if(isset($_POST['login'])&& isset($_POST['mdp'])){
-    	if($value['nom'] == $_POST['login'] && $value['prenom'] == $_POST['mdp']){
-
-    	$_session['login']= $_POST['login'];
-
-      header('location: page acceuil.php');
- }
 else {
-  echo '<body onload="alert(\'Nope\')">';
-
-  echo '<meta http-equive="refresh" content="0;URL=formulaire1.php">';
-}
-}
-
-else{
-  echo 'veuillez remplir les champs vides';
-
-}
+  echo "Mauvais login veuillez réessayer !";
+  //header('Location:connexion.php');
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="/site lycee/CSS/style.css"/>
-	<meta charset="UTF-8"/>
-	<title>Connexion</title>
-</head>
-<body>
-	<div class = "haut">
-    <h2>Bienvenue connectez vous</h2>
-<form action=formulaireprexo4.php method="POST">
-<p>Choisir votre login :<input type="texte" name="Login"/></p>
-<p>Choisir votre mot de passe :<input type="password" name="mdp"/></p>
-    <input type="submit" value="valider"/>
-    <a href="formulaire2.php">S'inscrire</a>
-</form>
-</div>
-</body>
-</html>
+<!------ traitement pour ajouter une personne lors de l'inscription au site---------->
